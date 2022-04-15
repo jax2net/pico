@@ -1,0 +1,15 @@
+{
+  "name": "pico-game",
+  "private": true,
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  },
+  "dependencies": {
+    "phaser": "^3.55.2",
+    "webpack": "^5.72.0"
+  }
+}
