@@ -17,27 +17,28 @@ server.listen(8080, () => {
 });
 
 io.on('connection', (socket) => {
-    console.log('A client has connected');
-    io.emit('con', 'You have connected to the WS Server.');
-    socket.on('left', input => {
+    console.log(`${socket.id} has connected`);
+    socket.on('left', data => {
         io.emit('left');
-        io.emit('SERVER: You have pressed left.');
-        console.log('Response from Client: ', input);
+        console.log(`Response from ${socket.id}: ${data.input}`);
     });
-    socket.on('right', input => {
+    socket.on('right', data => {
         io.emit('right');
-        io.emit('SERVER: You have pressed right.');
-        console.log('Response from Client: ', input);
+        console.log(`Response from ${socket.id}: ${data.input}`);
     });
-    socket.on('jump', input => {
+    socket.on('jump', data => {
         io.emit('jump');
-        io.emit('SERVER: You have pressed jump.');
-        console.log('Response from Client: ', input);
+        console.log(`Response from ${socket.id}: ${data.input}`);
     });
+    socket.on('stop', data => {
+        io.emit('stop');
+        console.log(`Response from ${socket.id}: ${data.input}`);
+    });
+    socket.on('gameover', data => {
+        console.log('GAMEOVER FROM SERVER');
+        io.emit('gameover');
+    })
     socket.on('disconnect', () => {
-        console.log('Disconnected.');
+        console.log(`${socket.id} disconnected!`);
     });
 });
-
-
-
