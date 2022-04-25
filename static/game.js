@@ -158,6 +158,7 @@ function update() {
     // right = false;
     // jump = false;
     
+    
 }
 
 function collectStar(player, star) {
