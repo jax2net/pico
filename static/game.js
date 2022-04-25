@@ -114,7 +114,6 @@ function update() {
     else {
         player.setVelocityX(0);
         player.anims.play('turn');
-        
     }
 
     if (cursors.up.isDown && player.body.touching.down) {
@@ -136,6 +135,11 @@ function update() {
       left = false;
     });
 
+    this.socket.on('stop', () => {
+        left = false;
+        right = false;
+    })
+
     if (left) {
       player.setVelocityX(-160);
       player.anims.play('left', true);
@@ -150,15 +154,9 @@ function update() {
       if (player.body.touching.down) {
         player.setVelocityY(-330);
         console.log('jumped');
-        jump = false;
       }
     }
-
-    // left = false;
-    // right = false;
-    // jump = false;
-    
-    
+    jump = false;
 }
 
 function collectStar(player, star) {
@@ -190,4 +188,5 @@ function hitBomb(player, bomb) {
     player.anims.play('turn');
 
     gameOver = true;
+    this.socket.emit('gameover');
 }
